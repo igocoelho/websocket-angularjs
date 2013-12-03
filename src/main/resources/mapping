@@ -1,0 +1,8 @@
+[config]
+package.views=WEB-INF/
+package.base=org.debux.webmotion.dashboard
+server.listener.class=org.debux.webmotion.dashboard.StartupListenner
+
+[actions]
+GET       /                           view:index.html
+GET       /tasksManager               TasksManager.createWebsocket

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html ng-app="DashboardApp">
+    <head>
+        <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+        <script src="js/application.js"></script>
+        
+        <style>
+            html, body, .row, .span4 {
+                height: 100%;
+            }
+            .task {
+                width: 110px;
+                height: 100px;
+                float: left;
+                background: #ffff66;
+                padding: 10px;
+                margin: 10px;
+                border-radius: 3px;
+            }
+        </style>
+    </head>
+    <body ng-controller="MainCtrl">
+        <form ng-submit="addTask()">
+            <input type="text" ng-model="taskName" size="30" required
+                   placeholder="add new task here">
+            <input class="btn-primary" type="submit" value="add">
+        </form>
+        <div class="row">
+            <div class="span4" drop-event="updateTask($element, 'todoTasks')">
+                <h1>Todo</h1>
+                <div id="{{task.id}}" drag-event ng-repeat="task in tasks.todoTasks" class="task">
+                    <button class="close" ng-click="delTask(task)">&times;</button>
+                    {{task.name}}
+                </div>
+            </div>
+            <div class="span4" drop-event="updateTask($element, 'progressTasks')">
+                <h1>In progress</h1>
+                <div id="{{task.id}}" drag-event ng-repeat="task in tasks.progressTasks" class="task">
+                    <button class="close" ng-click="delTask(task)">&times;</button>
+                    {{task.name}}
+                </div>
+            </div>
+            <div class="span4" drop-event="updateTask($element, 'doneTasks')">
+                <h1>Done</h1>
+                <div id="{{task.id}}" drag-event ng-repeat="task in tasks.doneTasks" class="task">
+                    <button class="close" ng-click="delTask(task)">&times;</button>
+                    {{task.name}}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
